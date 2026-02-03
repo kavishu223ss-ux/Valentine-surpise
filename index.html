@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine Surprise 💖</title>
+
+<style>
+body{
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg,#ff758c,#ff7eb3);
+  overflow:hidden;
+  text-align:center;
+  padding-top:50px;
+}
+
+.box{
+  background:white;
+  border-radius:25px;
+  padding:30px;
+  max-width:380px;
+  margin:auto;
+  position:relative;
+  z-index:2;
+}
+
+button{
+  padding:10px 22px;
+  margin:12px;
+  border:none;
+  border-radius:25px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.yes{
+  background:#ff4d6d;
+  color:white;
+}
+
+.no{
+  background:#555;
+  color:white;
+  position:absolute;
+}
+
+/* Floating hearts animation */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  color:#ff3366;
+  font-size:20px;
+  animation:float 6s linear infinite;
+  opacity:0.8;
+}
+
+@keyframes float{
+  from{transform:translateY(0);opacity:1;}
+  to{transform:translateY(-110vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background music (upload inji-iduppalaga.mp3 in same folder) -->
+<audio autoplay loop>
+  <source src="inji-iduppalaga.mp3" type="audio/mpeg">
+</audio>
+
+<div class="box" id="content">
+  <h2>Mama 🥺 did you love me?</h2>
+  <button class="yes" onclick="loveYes()">Yes</button>
+  <button class="no" id="noBtn" onmouseover="moveNo()">No</button>
+</div>
+
+<script>
+function loveYes(){
+  document.getElementById("content").innerHTML = `
+    <h2>I love you too ❤️</h2>
+    <p>Will you be my Valentine? 💝</p>
+    <button class="yes" onclick="valYes()">Yes</button>
+    <button class="no" id="noBtn" onmouseover="moveNo()">No</button>
+  `;
+}
+
+function valYes(){
+  document.getElementById("content").innerHTML = `
+    <h2>Ummaaaaa 😘💋</h2>
+    <h3>Happy Valentine's Day Mama 💖</h3>
+    <p>— Wishes by Ishu 🌸</p>
+  `;
+}
+
+function valNo(){
+  document.getElementById("content").innerHTML = `
+    <h2>I hate you Kaviarasu 😤</h2>
+    <h3>Happy Valentine's Day Mama 💔</h3>
+    <p>— Wishes by Ishu 🌸</p>
+  `;
+}
+
+/* No button escape movement */
+function moveNo(){
+  const btn = document.getElementById("noBtn");
+  const x = Math.random() * (window.innerWidth - 120);
+  const y = Math.random() * (window.innerHeight - 120);
+  btn.style.left = x + "px";
+  btn.style.top = y + "px";
+}
+
+/* Floating hearts generator */
+setInterval(()=>{
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (15 + Math.random() * 20) + "px";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+},500);
+</script>
+
+</body>
+</html>
