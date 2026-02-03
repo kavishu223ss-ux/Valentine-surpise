@@ -43,7 +43,7 @@ button{
   position:absolute;
 }
 
-/* Floating hearts animation */
+/* Floating hearts */
 .heart{
   position:fixed;
   bottom:-20px;
@@ -62,9 +62,9 @@ button{
 
 <body>
 
-<!-- Background music (upload inji-iduppalaga.mp3 in same folder) -->
-<audio autoplay loop>
-  <source src="inji-iduppalaga.mp3" type="audio/mpeg">
+<!-- Background music -->
+<audio id="bgm" loop>
+  <source src="inji.mp3" type="audio/mpeg">
 </audio>
 
 <div class="box" id="content">
@@ -74,58 +74,21 @@ button{
 </div>
 
 <script>
-  <audio id="bgm" loop>
-  <source src="inji.mp3" type="audio/mpeg">
-</audio>
-
-<script>
+/* music play on first click (mobile fix) */
 document.addEventListener("click", () => {
   document.getElementById("bgm").play();
-});
-function loveYes(){
-  document.getElementById("content").innerHTML = `
-    <h2>I love you too ❤️</h2>
-    <p>Will you be my Valentine? 💝</p>
-    <button class="yes" onclick="valYes()">Yes</button>
-    <button class="no" id="noBtn" onmouseover="moveNo()">No</button>
-  `;
-}
+},{ once:true });
 
-function valYes(){
-  document.getElementById("content").innerHTML = `
-    <h2>Ummaaaaa 😘💋</h2>
-    <h3>Happy Valentine's Day Mama 💖</h3>
-    <p>— Wishes by Ishu 🌸</p>
-  `;
-}
-
-function valNo(){
-  document.getElementById("content").innerHTML = `
-    <h2>I hate you Kaviarasu 😤</h2>
-    <h3>Happy Valentine's Day Mama 💔</h3>
-    <p>— Wishes by Ishu 🌸</p>
-  `;
-}
-
-/* No button escape movement */
 function moveNo(){
   const btn = document.getElementById("noBtn");
-  const x = Math.random() * (window.innerWidth - 120);
-  const y = Math.random() * (window.innerHeight - 120);
-  btn.style.left = x + "px";
-  btn.style.top = y + "px";
+  btn.style.top = Math.random()*200 + "px";
+  btn.style.left = Math.random()*200 + "px";
 }
 
-/* Floating hearts generator */
-setInterval(()=>{
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (15 + Math.random() * 20) + "px";
-  document.body.appendChild(heart);
-  setTimeout(()=>heart.remove(),6000);
-},500);
+function loveYes(){
+  document.getElementById("content").innerHTML =
+    "<h2>I knew it 😘💖</h2><p>You are my everything 💕</p>";
+}
 </script>
 
 </body>
